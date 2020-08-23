@@ -69,15 +69,15 @@ extension AutocompleteViewController: AutocompleteViewModelDelegate {
         case .empty:
             autoCompleteView.searchResultsTableView.isHidden = true
             autoCompleteView.statusLabel.text = Constants.Strings.emptyStateText
-            autoCompleteView.statusImageView.image = UIImage(named: Constants.Images.emptyState)
+            autoCompleteView.statusImageView.image = .emptyStateImage
         case .noResults:
             autoCompleteView.searchResultsTableView.isHidden = true
             autoCompleteView.statusLabel.text = Constants.Strings.noResultsText
-            autoCompleteView.statusImageView.image = UIImage(named: Constants.Images.noResults)
+            autoCompleteView.statusImageView.image = .noResultsImage
         case .warning:
             autoCompleteView.searchResultsTableView.isHidden = true
             autoCompleteView.statusLabel.text = Constants.Strings.warningStateText
-            autoCompleteView.statusImageView.image = UIImage(named: Constants.Images.warningState)
+            autoCompleteView.statusImageView.image = .warningStateImage
         case .results:
             autoCompleteView.searchResultsTableView.isHidden = false
         }

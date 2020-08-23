@@ -81,6 +81,6 @@ final class AutocompleteTableViewCell: UITableViewCell {
         accessibilityLabel = userDetails.1
         
         avatarImageView.kf.indicatorType = .activity
-        avatarImageView.kf.setImage(with: userDetails.2, placeholder: UIImage(named: Constants.Images.placeholder), options: [.transition(.fade(0.2))])
+        avatarImageView.kf.setImage(with: userDetails.2, placeholder: UIImage.placeholderImage, options: [.transition(.fade(0.2))])
     }
 }

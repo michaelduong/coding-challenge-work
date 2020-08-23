@@ -29,6 +29,7 @@
 		81358FC424F25E01006AE3EF /* Stevia in Frameworks */ = {isa = PBXBuildFile; productRef = 81358FC324F25E01006AE3EF /* Stevia */; };
 		81358FC624F26C91006AE3EF /* AutocompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81358FC524F26C91006AE3EF /* AutocompleteTableViewCell.swift */; };
 		8162CFEF24F2FDFC002894DB /* AutocompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFEE24F2FDFC002894DB /* AutocompleteView.swift */; };
+		8162CFF224F317B0002894DB /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFF124F317B0002894DB /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		81358FBF24F25D67006AE3EF /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		81358FC524F26C91006AE3EF /* AutocompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteTableViewCell.swift; sourceTree = "<group>"; };
 		8162CFEE24F2FDFC002894DB /* AutocompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompleteView.swift; sourceTree = "<group>"; };
+		8162CFF124F317B0002894DB /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +203,7 @@
 				81358FBB24F25D0C006AE3EF /* Colors.swift */,
 				81358FBD24F25D2D006AE3EF /* Fonts.swift */,
 				81358FBF24F25D67006AE3EF /* UILabel+Extension.swift */,
+				8162CFF124F317B0002894DB /* Images.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				81358FC624F26C91006AE3EF /* AutocompleteTableViewCell.swift in Sources */,
 				6A29FD2D20E6EC79004885EC /* UserSearchResultDataProvider.swift in Sources */,
 				81358FBE24F25D2D006AE3EF /* Fonts.swift in Sources */,
+				8162CFF224F317B0002894DB /* Images.swift in Sources */,
 				6A29FD2920E6EC2F004885EC /* SlackAPIService.swift in Sources */,
 				6A29FD2720E6EC1F004885EC /* UserSearchResult.swift in Sources */,
 				81358FB124F2502C006AE3EF /* Constants.swift in Sources */,

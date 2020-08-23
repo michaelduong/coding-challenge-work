@@ -119,13 +119,18 @@ final class AutocompleteViewController: UIViewController {
 // MARK: - TextField Delegate Methods
 extension AutocompleteViewController: UITextFieldDelegate {
     @objc func textFieldDidChange(textField: UITextField) {
-        viewModel.updateSearchText(text: searchTextField.text)
+        if !textField.hasText {
+            updateStatusUI(with: .empty)
+        } else {
+            viewModel.updateSearchText(text: searchTextField.text)
+        }
     }
 }
 
 // MARK: - AutoComplete View Model Delegate Methods
 extension AutocompleteViewController: AutocompleteViewModelDelegate {
     func usersDataUpdated() {
+        updateStatusUI(with: .results)
         searchResultsTableView.reloadData()
     }
     

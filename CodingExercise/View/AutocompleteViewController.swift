@@ -12,42 +12,8 @@ final class AutocompleteViewController: UIViewController {
     
     // MARK: - Properties
     private var viewModel: AutocompleteViewModelInterface
-    
-    private let searchTextField: UITextField = {
-        let textField = UITextField(frame: .zero)
-        textField.accessibilityLabel = Constants.Strings.textFieldPlaceholder
-        textField.borderStyle = .roundedRect
-        textField.backgroundColor = .placeholderBackgroundColor
-        let centeredParagraphStyle = NSMutableParagraphStyle()
-        centeredParagraphStyle.alignment = .center
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.placeholderColor,
-                          .font : UIFont.placeholder, NSAttributedString.Key.paragraphStyle: centeredParagraphStyle]
-        textField.attributedPlaceholder = NSAttributedString(string: Constants.Strings.textFieldPlaceholder, attributes: attributes)
-        textField.layer.cornerRadius = .textFieldCornerRadius
-        textField.layer.masksToBounds = true
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.placeholderBackgroundColor.cgColor
-        return textField
-    }()
-    
-    private let searchResultsTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = .cellRowHeight
-        tableView.separatorColor = .dividerColor
-        return tableView
-    }()
-    
-    private let statusLabel = UILabel(font: .status, textColor: .statusLabelColor, textAlignment: .center, numberOfLines: 0, text: Constants.Strings.emptyStateText)
-    
-    private let statusImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: Constants.Images.emptyState)
-        return iv
-    }()
-    
     private let dataSource = AutocompleteTableViewDataSource()
+    private let autoCompleteView = AutocompleteView()
     
     // MARK: - View Lifecycle Methods
     init(viewModel: AutocompleteViewModelInterface) {
@@ -59,6 +25,10 @@ final class AutocompleteViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        self.view = autoCompleteView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -66,53 +36,13 @@ final class AutocompleteViewController: UIViewController {
     
     // MARK: - UI Functions
     private func setupUI() {
-        searchTextField.delegate = self
-        searchTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        autoCompleteView.searchTextField.delegate = self
+        autoCompleteView.searchTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         
-        searchResultsTableView.isHidden = true
-        searchResultsTableView.dataSource = dataSource
-        searchResultsTableView.delegate = self
-        searchResultsTableView.register(AutocompleteTableViewCell.self, forCellReuseIdentifier: Constants.Strings.cellIdentifier)
+        autoCompleteView.searchResultsTableView.dataSource = dataSource
         
         viewModel.delegate = self
         dataSource.viewModel = viewModel
-        setupSubviews()
-    }
-    
-    private func setupSubviews() {
-        view.subviews(
-            searchTextField,
-            statusLabel,
-            statusImageView,
-            searchResultsTableView
-        )
-        
-        setupConstraints()
-    }
-    
-    private func setupConstraints() {
-        searchTextField
-            .leading(.leadingSpacing)
-            .trailing(.trailingSpacing)
-            .top(.textFieldTopPadding)
-            .height(40)
-        
-        statusLabel
-            .leading(.statusLabelSidePadding)
-            .trailing(.statusLabelSidePadding)
-            .Top == searchTextField.Bottom + .statusLabelTopPadding
-        
-        statusImageView
-            .leading(.leadingSpacing)
-            .trailing(.trailingSpacing)
-            .height(.statusImageViewHeight)
-            .Top == statusLabel.Bottom + .statusImageViewTopPadding
-        
-        searchResultsTableView
-            .bottom(0)
-            .leading(0)
-            .trailing(0)
-            .Top == searchTextField.Bottom + .textFieldBottomSpacing
     }
 }
 
@@ -122,7 +52,7 @@ extension AutocompleteViewController: UITextFieldDelegate {
         if !textField.hasText {
             updateStatusUI(with: .empty)
         } else {
-            viewModel.updateSearchText(text: searchTextField.text)
+            viewModel.updateSearchText(text: autoCompleteView.searchTextField.text)
         }
     }
 }
@@ -131,29 +61,25 @@ extension AutocompleteViewController: UITextFieldDelegate {
 extension AutocompleteViewController: AutocompleteViewModelDelegate {
     func usersDataUpdated() {
         updateStatusUI(with: .results)
-        searchResultsTableView.reloadData()
+        autoCompleteView.searchResultsTableView.reloadData()
     }
     
     func updateStatusUI(with state: ResultState) {
         switch state {
         case .empty:
-            searchResultsTableView.isHidden = true
-            statusLabel.text = Constants.Strings.emptyStateText
-            statusImageView.image = UIImage(named: Constants.Images.emptyState)
+            autoCompleteView.searchResultsTableView.isHidden = true
+            autoCompleteView.statusLabel.text = Constants.Strings.emptyStateText
+            autoCompleteView.statusImageView.image = UIImage(named: Constants.Images.emptyState)
         case .noResults:
-            searchResultsTableView.isHidden = true
-            statusLabel.text = Constants.Strings.noResultsText
-            statusImageView.image = UIImage(named: Constants.Images.noResults)
+            autoCompleteView.searchResultsTableView.isHidden = true
+            autoCompleteView.statusLabel.text = Constants.Strings.noResultsText
+            autoCompleteView.statusImageView.image = UIImage(named: Constants.Images.noResults)
         case .warning:
-            searchResultsTableView.isHidden = true
-            statusLabel.text = Constants.Strings.warningStateText
-            statusImageView.image = UIImage(named: Constants.Images.warningState)
+            autoCompleteView.searchResultsTableView.isHidden = true
+            autoCompleteView.statusLabel.text = Constants.Strings.warningStateText
+            autoCompleteView.statusImageView.image = UIImage(named: Constants.Images.warningState)
         case .results:
-            searchResultsTableView.isHidden = false
+            autoCompleteView.searchResultsTableView.isHidden = false
         }
     }
 }
-
-// MARK: - Table View Delegate Methods
-extension AutocompleteViewController: UITableViewDelegate {}
-

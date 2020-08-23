@@ -23,7 +23,6 @@ final class AutocompleteTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Strings.cellIdentifier, for: indexPath)
-//        let cell = UITableViewCell(style: .default, reuseIdentifier: Constants.cellIdentifier)
         let username = viewModel.username(at: indexPath.row)
 
         cell.textLabel?.text = username

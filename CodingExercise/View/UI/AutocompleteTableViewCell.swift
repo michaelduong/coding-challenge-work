@@ -13,24 +13,25 @@ import Kingfisher
 final class AutocompleteTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    private let avatarImageView: UIImageView = {
+    let avatarImageView: UIImageView = {
         let iv = UIImageView()
         iv.layer.cornerRadius = .avatarCornerRadius
+        iv.clipsToBounds = true
         iv.contentMode = .scaleAspectFill
         return iv
     }()
     
-    private let nameLabel = UILabel(font: .name,
+    let nameLabel = UILabel(font: .name,
                                     textColor: .nameColor,
                                     textAlignment: .left,
                                     numberOfLines: 1)
     
-    private let usernameLabel = UILabel(font: .username,
+    let usernameLabel = UILabel(font: .username,
                                         textColor: .usernameColor,
                                         textAlignment: .left,
                                         numberOfLines: 1)
     
-    var resultViewModel: AutocompleteViewModel! {
+    var userDetails: (String, String, URL)! {
         didSet {
             bind()
         }
@@ -72,10 +73,14 @@ final class AutocompleteTableViewCell: UITableViewCell {
             .top(.cellTopPadding)
             .bottom(.cellBottomPadding)
             .Leading == nameLabel.Trailing + .usernameLeadingPadding
-        usernameLabel.Trailing == contentView.Trailing - .usernameTrailingPadding
     }
     
     private func bind() {
+        nameLabel.text = userDetails.0
+        usernameLabel.text = userDetails.1
+        accessibilityLabel = userDetails.1
         
+        avatarImageView.kf.indicatorType = .activity
+        avatarImageView.kf.setImage(with: userDetails.2, placeholder: UIImage(named: Constants.Images.placeholder), options: [.transition(.fade(0.2))])
     }
 }

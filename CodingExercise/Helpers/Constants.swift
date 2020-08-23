@@ -23,6 +23,7 @@ struct Constants {
         static let emptyState = "empty-state"
         static let noResults = "no-results"
         static let warningState = "warning-state"
+        static let placeholder = "avatar-placeholder"
     }
     
 }

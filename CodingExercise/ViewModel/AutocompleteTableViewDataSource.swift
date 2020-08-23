@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class AutocompleteTableViewDataSource: NSObject, UITableViewDataSource {
     
@@ -18,15 +19,19 @@ final class AutocompleteTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.usernamesCount()
+        return viewModel.usersCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Strings.cellIdentifier, for: indexPath) as? AutocompleteTableViewCell else { return AutocompleteTableViewCell() }
-        let username = viewModel.username(at: indexPath.row)
-
-        cell.textLabel?.text = username
-        cell.accessibilityLabel = username
+        
+        let userDetails: (String, String, URL) = (
+            viewModel.userFullName(at: indexPath.row),
+            viewModel.username(at: indexPath.row),
+            viewModel.userAvatarUrl(at: indexPath.row)
+        )
+        
+        cell.userDetails = userDetails
         
         return cell
     }

@@ -34,6 +34,7 @@ final class AutocompleteView: UIView {
         tableView.estimatedRowHeight = .cellRowHeight
         tableView.separatorColor = .dividerColor
         tableView.isHidden = true
+        tableView.allowsSelection = false
         tableView.register(AutocompleteTableViewCell.self, forCellReuseIdentifier: Constants.Strings.cellIdentifier)
         return tableView
     }()

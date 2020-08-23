@@ -116,6 +116,7 @@
 				8182DC2B24F23F4E006A40C6 /* View */,
 				8182DC2C24F23F53006A40C6 /* ViewModel */,
 				8182DC2E24F23F62006A40C6 /* Networking */,
+				8162CFF324F31A4B002894DB /* Data */,
 				8182DC2D24F23F58006A40C6 /* Helpers */,
 				6AE88E2F222758CA0032677C /* Resources */,
 			);
@@ -167,6 +168,13 @@
 				8162CFEE24F2FDFC002894DB /* AutocompleteView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		8162CFF324F31A4B002894DB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		8182DC2A24F23F4A006A40C6 /* Model */ = {

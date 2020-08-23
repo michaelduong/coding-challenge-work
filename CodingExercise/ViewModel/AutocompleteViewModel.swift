@@ -98,7 +98,7 @@ class AutocompleteViewModel: AutocompleteViewModelInterface {
         }
 
         self.resultsDataProvider.fetchUsers(term) { users in
-            completionHandler(users.map { $0 })
+            completionHandler(users.compactMap { $0 })
         }
     }
 }

@@ -19,4 +19,10 @@ struct Constants {
         static let warningStateText = NSLocalizedString("Search term found in deny list.", comment: "")
     }
     
+    struct Images {
+        static let emptyState = "empty-state"
+        static let noResults = "no-results"
+        static let warningState = "warning-state"
+    }
+    
 }

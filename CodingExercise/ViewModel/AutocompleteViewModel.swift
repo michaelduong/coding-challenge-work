@@ -7,8 +7,16 @@
 
 import Foundation
 
+enum ResultState {
+    case empty
+    case noResults
+    case warning
+    case results
+}
+
 protocol AutocompleteViewModelDelegate: class {
     func usersDataUpdated()
+    func updateStatusUI(with state: ResultState)
 }
 
 // MARK: - Interfaces

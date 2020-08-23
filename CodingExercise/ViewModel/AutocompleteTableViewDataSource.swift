@@ -22,11 +22,12 @@ final class AutocompleteTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Strings.cellIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Strings.cellIdentifier, for: indexPath) as? AutocompleteTableViewCell else { return AutocompleteTableViewCell() }
         let username = viewModel.username(at: indexPath.row)
 
         cell.textLabel?.text = username
         cell.accessibilityLabel = username
+        
         return cell
     }
 }

@@ -9,6 +9,15 @@ import Foundation
 
 struct UserSearchResult: Codable {
     let username: String
+    let name: String
+    let id: Int
+    let avatarUrl: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "display_name"
+        case avatarUrl = "avatar_url"
+        case id, username
+    }
 }
 
 struct SearchResponse: Codable {

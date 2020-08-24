@@ -26,4 +26,7 @@ struct Constants {
         static let placeholder = "avatar-placeholder"
     }
     
+    struct UserDefaultKeys {
+        static let savedTermsList = "saved-terms-list"
+    }
 }

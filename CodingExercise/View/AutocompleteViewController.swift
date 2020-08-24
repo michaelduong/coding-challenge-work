@@ -32,6 +32,7 @@ final class AutocompleteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        ListManager.shared.retrieveList()
     }
     
     // MARK: - UI Functions
@@ -49,18 +50,13 @@ final class AutocompleteViewController: UIViewController {
 // MARK: - TextField Delegate Methods
 extension AutocompleteViewController: UITextFieldDelegate {
     @objc func textFieldDidChange(textField: UITextField) {
-        if !textField.hasText {
-            updateStatusUI(with: .empty)
-        } else {
-            viewModel.updateSearchText(text: autoCompleteView.searchTextField.text)
-        }
+        viewModel.updateSearchText(text: autoCompleteView.searchTextField.text)
     }
 }
 
 // MARK: - AutoComplete View Model Delegate Methods
 extension AutocompleteViewController: AutocompleteViewModelDelegate {
     func usersDataUpdated() {
-        updateStatusUI(with: .results)
         autoCompleteView.searchResultsTableView.reloadData()
     }
     

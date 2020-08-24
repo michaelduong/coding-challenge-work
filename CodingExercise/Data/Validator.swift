@@ -10,7 +10,7 @@ import Foundation
 
 class Validator {
     typealias Node = ValidatorNode<Character>
-    fileprivate let root: Node
+    let root: Node
     
     static let shared = Validator()
     
@@ -39,7 +39,6 @@ extension Validator {
             }
             
             currentIndex += 1
-            
             
             if currentIndex == characters.count {
                 currentNode.isTerminating = true

@@ -52,6 +52,11 @@ protocol AutocompleteViewModelInterface {
     func userAvatarUrl(at index: Int) -> URL
 
     /*
+     * Returns whether text is valid or found within the denylist
+     */
+    func validateText(_ text: String) -> Bool
+    
+    /*
      Delegate that allows to send data updates through callback.
  */
     var delegate: AutocompleteViewModelDelegate? { get set }
@@ -67,12 +72,29 @@ class AutocompleteViewModel: AutocompleteViewModelInterface {
     }
 
     func updateSearchText(text: String?) {
-        self.fetchUserNamesAndNames(text) { [weak self] users in
-            DispatchQueue.main.async {
-                self?.users = users
-                self?.delegate?.usersDataUpdated()
+        if validateText(text ?? "") {
+            self.fetchUserNamesAndNames(text) { [weak self] users in
+                DispatchQueue.main.async {
+                    self?.users = users
+                    self?.delegate?.updateStatusUI(with: .results)
+                    self?.delegate?.usersDataUpdated()
+                }
             }
         }
+    }
+    
+    func validateText(_ text: String) -> Bool {
+        if text.isEmpty {
+            self.delegate?.updateStatusUI(with: .empty)
+            return false
+        }
+        
+        if Validator.shared.contains(text) || Validator.shared.startsWith(String(text.prefix(2))) {
+            self.delegate?.updateStatusUI(with: .warning)
+            return false
+        }
+        
+        return true
     }
 
     func usersCount() -> Int {

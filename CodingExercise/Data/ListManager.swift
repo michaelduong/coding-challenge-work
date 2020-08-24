@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ListManagerInterface {
-    func retrieveList() -> [String]
+    func retrieveList()
     func writeToList(addition: String)
     func saveListToDisk(_ list: [String])
 }
@@ -26,7 +26,7 @@ class ListManager: ListManagerInterface {
     
     let defaults = UserDefaults.standard
     
-    func retrieveList() -> [String] {
+    func retrieveList() {
         // Load list of search terms from device/local storage if exists
         if let listOfWords = defaults.object(forKey: Constants.UserDefaultKeys.savedTermsList) as? [String] {
             searchTerms = listOfWords
@@ -38,7 +38,8 @@ class ListManager: ListManagerInterface {
             }
         }
         
-        return searchTerms
+        print(searchTerms)
+        initializeTrieValidator()
     }
     
     func saveListToDisk(_ list: [String]) {
@@ -54,8 +55,9 @@ class ListManager: ListManagerInterface {
         saveListToDisk(searchTerms)
     }
     
-    fileprivate func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
+    func initializeTrieValidator() {
+        for term in searchTerms {
+            Validator.shared.insert(term)
+        }
     }
 }

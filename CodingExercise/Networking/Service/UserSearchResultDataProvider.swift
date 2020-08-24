@@ -23,8 +23,10 @@ final class UserSearchResultDataProvider: UserSearchResultDataProviderInterface 
     }
 
     func fetchUsers(_ searchTerm: String, completionHandler: @escaping ([UserSearchResult]) -> Void) {
-        self.slackAPI.fetchUsers(searchTerm) { users in
-            completionHandler(users)
+        self.slackAPI.fetchUsers(searchTerm) { users,err  in
+            if let users = users, err == nil {
+                completionHandler(users)
+            }
         }
     }
 }

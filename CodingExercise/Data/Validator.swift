@@ -68,17 +68,8 @@ extension Validator {
     
     func startsWith(_ prefix: String) -> Bool {
         guard !prefix.isEmpty else { return false }
-        var startsWithBool: Bool = false
-        
-        let maxSearchTermCount = UserDefaults.standard.integer(forKey: Constants.UserDefaultKeys.maxSearchTermCount)
-        
-        for i in 2...maxSearchTermCount {
-            startsWithBool = contains(String(prefix.prefix(i)))
-            if startsWithBool {
-                break
-            }
-        }
-        
-        return startsWithBool
+
+        let wordCount = prefix.count
+        return contains(String(prefix.prefix(wordCount)))
     }
 }

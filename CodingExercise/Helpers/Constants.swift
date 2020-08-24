@@ -28,6 +28,5 @@ struct Constants {
     
     struct UserDefaultKeys {
         static let savedTermsList = "saved-terms-list"
-        static let maxSearchTermCount = "max-search-term-count"
     }
 }

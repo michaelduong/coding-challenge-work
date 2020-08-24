@@ -73,11 +73,16 @@ class AutocompleteViewModel: AutocompleteViewModelInterface {
 
     func updateSearchText(text: String?) {
         if validateText(text ?? "") {
-            self.fetchUserNamesAndNames(text) { [weak self] users in
+            self.fetchUserNamesAndNames(text) { [weak self] usersData in
                 DispatchQueue.main.async {
-                    self?.users = users
-                    self?.delegate?.updateStatusUI(with: .results)
-                    self?.delegate?.usersDataUpdated()
+                    if usersData.isEmpty {
+                        self?.delegate?.updateStatusUI(with: .noResults)
+                        ListManager.shared.writeToList(addition: text!)
+                    } else {
+                        self?.users = usersData
+                        self?.delegate?.updateStatusUI(with: .results)
+                        self?.delegate?.usersDataUpdated()                        
+                    }
                 }
             }
         }

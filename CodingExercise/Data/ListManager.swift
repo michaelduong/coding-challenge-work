@@ -37,8 +37,6 @@ class ListManager: ListManagerInterface {
                 saveListToDisk(searchTerms) // Save it now so we can reload it later and not have to re-import
             }
         }
-        
-        print(searchTerms)
         initializeTrieValidator()
     }
     
@@ -49,21 +47,16 @@ class ListManager: ListManagerInterface {
     
     func writeToList(addition: String) {
         guard !addition.isEmpty else { return }
-        
-        searchTerms.append(addition)
-        
-        saveListToDisk(searchTerms)
+        if !Validator.shared.contains(addition) {
+            searchTerms.append(addition.lowercased())
+            Validator.shared.insert(addition.lowercased())
+            saveListToDisk(searchTerms)
+        }
     }
     
     func initializeTrieValidator() {
-        var maxSearchTermCount = defaults.integer(forKey: Constants.UserDefaultKeys.maxSearchTermCount)
-        
         for term in searchTerms {
-            let count = term.count
-            maxSearchTermCount = max(maxSearchTermCount, count)
             Validator.shared.insert(term)
         }
-        
-        defaults.set(maxSearchTermCount, forKey: Constants.UserDefaultKeys.maxSearchTermCount)
     }
 }

@@ -38,7 +38,7 @@ final class AutocompleteViewController: UIViewController {
     // MARK: - UI Functions
     private func setupUI() {
         autoCompleteView.searchTextField.delegate = self
-        autoCompleteView.searchTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        autoCompleteView.searchTextField.addTarget(self, action: #selector(textFieldDidEndEditing(_:)), for: .editingChanged)
         
         autoCompleteView.searchResultsTableView.dataSource = dataSource
         
@@ -49,10 +49,12 @@ final class AutocompleteViewController: UIViewController {
 
 // MARK: - TextField Delegate Methods
 extension AutocompleteViewController: UITextFieldDelegate {
-    @objc func textFieldDidChange(textField: UITextField) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            self.viewModel.updateSearchText(text: self.autoCompleteView.searchTextField.text)
-        }
+    @objc func textFieldDidEndEditing(_ textField: UITextField) {
+        viewModel.updateSearchText(text: self.autoCompleteView.searchTextField.text)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 

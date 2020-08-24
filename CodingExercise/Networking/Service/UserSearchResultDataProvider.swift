@@ -15,7 +15,7 @@ protocol UserSearchResultDataProviderInterface {
     func fetchUsers(_ searchTerm: String, completionHandler: @escaping ([UserSearchResult]) -> Void)
 }
 
-class UserSearchResultDataProvider: UserSearchResultDataProviderInterface {
+final class UserSearchResultDataProvider: UserSearchResultDataProviderInterface {
     var slackAPI: SlackAPIInterface
 
     init(slackAPI: SlackAPIInterface) {

@@ -16,7 +16,7 @@ protocol SlackAPIInterface {
     func fetchUsers(_ searchTerm: String, completionHandler: @escaping ([UserSearchResult]) -> Void)
 }
 
-class SlackApi: SlackAPIInterface {
+final class SlackApi: SlackAPIInterface {
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
 

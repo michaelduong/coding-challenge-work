@@ -32,8 +32,9 @@
 		8162CFF224F317B0002894DB /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFF124F317B0002894DB /* Images.swift */; };
 		8162CFF524F31F8D002894DB /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFF424F31F8D002894DB /* Validator.swift */; };
 		8162CFF724F31FBF002894DB /* ValidatorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFF624F31FBF002894DB /* ValidatorNode.swift */; };
-		8162CFF924F32388002894DB /* ListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFF824F32388002894DB /* ListManager.swift */; };
+		8162CFF924F32388002894DB /* DenyListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFF824F32388002894DB /* DenyListManager.swift */; };
 		8162CFFB24F33710002894DB /* ListImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFFA24F33710002894DB /* ListImporter.swift */; };
+		8162CFFD24F390F6002894DB /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFFC24F390F6002894DB /* CacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,8 +75,9 @@
 		8162CFF124F317B0002894DB /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		8162CFF424F31F8D002894DB /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		8162CFF624F31FBF002894DB /* ValidatorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorNode.swift; sourceTree = "<group>"; };
-		8162CFF824F32388002894DB /* ListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListManager.swift; sourceTree = "<group>"; };
+		8162CFF824F32388002894DB /* DenyListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyListManager.swift; sourceTree = "<group>"; };
 		8162CFFA24F33710002894DB /* ListImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListImporter.swift; sourceTree = "<group>"; };
+		8162CFFC24F390F6002894DB /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,8 +185,9 @@
 			children = (
 				8162CFF424F31F8D002894DB /* Validator.swift */,
 				8162CFF624F31FBF002894DB /* ValidatorNode.swift */,
-				8162CFF824F32388002894DB /* ListManager.swift */,
+				8162CFF824F32388002894DB /* DenyListManager.swift */,
 				8162CFFA24F33710002894DB /* ListImporter.swift */,
+				8162CFFC24F390F6002894DB /* CacheManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -360,7 +363,7 @@
 				81358FC624F26C91006AE3EF /* AutocompleteTableViewCell.swift in Sources */,
 				6A29FD2D20E6EC79004885EC /* UserSearchResultDataProvider.swift in Sources */,
 				8162CFFB24F33710002894DB /* ListImporter.swift in Sources */,
-				8162CFF924F32388002894DB /* ListManager.swift in Sources */,
+				8162CFF924F32388002894DB /* DenyListManager.swift in Sources */,
 				81358FBE24F25D2D006AE3EF /* Fonts.swift in Sources */,
 				8162CFF224F317B0002894DB /* Images.swift in Sources */,
 				6A29FD2920E6EC2F004885EC /* SlackAPIService.swift in Sources */,
@@ -368,6 +371,7 @@
 				81358FB124F2502C006AE3EF /* Constants.swift in Sources */,
 				81358FBA24F25C34006AE3EF /* Layout.swift in Sources */,
 				6A29FD0520E6EB0F004885EC /* AppDelegate.swift in Sources */,
+				8162CFFD24F390F6002894DB /* CacheManager.swift in Sources */,
 				81358FC024F25D67006AE3EF /* UILabel+Extension.swift in Sources */,
 				8162CFF724F31FBF002894DB /* ValidatorNode.swift in Sources */,
 				6AF5D92820EC255B008186C3 /* AutocompleteViewModel.swift in Sources */,

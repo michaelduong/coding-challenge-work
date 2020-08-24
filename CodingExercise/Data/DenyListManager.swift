@@ -1,5 +1,5 @@
 //
-//  ListManager.swift
+//  DenyListManager.swift
 //  CodingExercise
 //
 //  Created by Swift Team Six on 8/23/20.
@@ -14,9 +14,9 @@ protocol ListManagerInterface {
     func saveListToDisk(_ list: [String])
 }
 
-class ListManager: ListManagerInterface {
+final class DenyListManager: ListManagerInterface {
     
-    static let shared = ListManager()
+    static let shared = DenyListManager()
     
     private init() {}
     
@@ -31,7 +31,7 @@ class ListManager: ListManagerInterface {
         if let listOfWords = defaults.stringArray(forKey: Constants.UserDefaultKeys.savedTermsList) {
             searchTerms = listOfWords
         } else { // Otherwise we have to load it from the bundle
-            let words = importer.importList()
+            let words = importer.importDenyList()
             if !words.isEmpty {
                 searchTerms = words.components(separatedBy: "\n")
                 saveListToDisk(searchTerms) // Save it now so we can reload it later and not have to re-import

@@ -62,26 +62,35 @@ protocol AutocompleteViewModelInterface {
     var delegate: AutocompleteViewModelDelegate? { get set }
 }
 
-class AutocompleteViewModel: AutocompleteViewModelInterface {
+final class AutocompleteViewModel: AutocompleteViewModelInterface {
     private let resultsDataProvider: UserSearchResultDataProviderInterface
     private var users: [UserSearchResult] = []
     public weak var delegate: AutocompleteViewModelDelegate?
+    private let cacheManager: CacheManagarInterface
 
-    init(dataProvider: UserSearchResultDataProviderInterface) {
+    init(dataProvider: UserSearchResultDataProviderInterface, cacheManager: CacheManagarInterface) {
         self.resultsDataProvider = dataProvider
+        self.cacheManager = cacheManager
     }
 
     func updateSearchText(text: String?) {
         if validateText(text ?? "") {
-            self.fetchUserNamesAndNames(text) { [weak self] usersData in
-                DispatchQueue.main.async {
-                    if usersData.isEmpty {
-                        self?.delegate?.updateStatusUI(with: .noResults)
-                        ListManager.shared.writeToList(addition: text!)
-                    } else {
-                        self?.users = usersData
-                        self?.delegate?.updateStatusUI(with: .results)
-                        self?.delegate?.usersDataUpdated()                        
+            if let cachedUsers = cacheManager.retrieveCache(key: text!) {
+                self.users = cachedUsers
+                self.delegate?.updateStatusUI(with: .results)
+                self.delegate?.usersDataUpdated()
+            } else {
+                self.fetchUserNamesAndNames(text) { [weak self] usersData in
+                    DispatchQueue.main.async {
+                        if usersData.isEmpty {
+                            self?.delegate?.updateStatusUI(with: .noResults)
+                            DenyListManager.shared.writeToList(addition: text!)
+                        } else {
+                            self?.users = usersData
+                            self?.cacheManager.addToCache(searchString: text!, result: usersData)
+                            self?.delegate?.updateStatusUI(with: .results)
+                            self?.delegate?.usersDataUpdated()
+                        }
                     }
                 }
             }

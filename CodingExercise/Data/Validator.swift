@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Validator {
+final class Validator {
     typealias Node = ValidatorNode<Character>
     let root: Node
     

@@ -32,7 +32,7 @@ final class AutocompleteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        ListManager.shared.retrieveList()
+        DenyListManager.shared.retrieveList()
     }
     
     // MARK: - UI Functions

@@ -54,6 +54,9 @@ final class AutocompleteTableViewCell: UITableViewCell {
             usernameLabel
         )
         
+        nameLabel.setLineHeight(lineHeight: .lineHeight)
+        usernameLabel.setLineHeight(lineHeight: .lineHeight)
+        
         setupConstraints()
     }
     

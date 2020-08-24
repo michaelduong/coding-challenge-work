@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ValidatorNode<T: Hashable> {
+final class ValidatorNode<T: Hashable> {
   var value: T?
   weak var parent: ValidatorNode?
   var children: [T: ValidatorNode] = [:]

@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         let dataProvider = UserSearchResultDataProvider(slackAPI: SlackApi.shared)
-        let viewModel = AutocompleteViewModel(dataProvider: dataProvider)
+        let cacheManager = CacheManager()
+        let viewModel = AutocompleteViewModel(dataProvider: dataProvider, cacheManager: cacheManager)
 
         let autocompleteViewController = AutocompleteViewController(viewModel: viewModel)
         window?.makeKeyAndVisible()

@@ -9,12 +9,12 @@
 import Foundation
 
 protocol ListImporterInterface {
-    func importList() -> String
+    func importDenyList() -> String
 }
 
-class ListImporter: ListImporterInterface {
+final class ListImporter: ListImporterInterface {
     
-    func importList() -> String {
+    func importDenyList() -> String {
         if let wordsURL = Bundle.main.url(forResource: "denylist", withExtension: "txt") {
             if let words = try? String(contentsOf: wordsURL) {
                 return words

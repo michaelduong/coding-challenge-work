@@ -68,7 +68,7 @@ extension Validator {
     
     func startsWith(_ prefix: String) -> Bool {
         guard !prefix.isEmpty else { return false }
-
+        
         let wordCount = prefix.count
         return contains(String(prefix.prefix(wordCount)))
     }

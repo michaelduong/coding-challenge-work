@@ -49,4 +49,6 @@ extension CGFloat {
     public static var statusImageViewTopPadding: CGFloat { 28 }
     // Status image view height
     public static var statusImageViewHeight: CGFloat { 218 }
+    // Search text field height
+    public static var searchTextFieldHeight: CGFloat { 40 }
 }

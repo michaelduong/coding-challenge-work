@@ -35,6 +35,7 @@
 		8162CFF924F32388002894DB /* DenyListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFF824F32388002894DB /* DenyListManager.swift */; };
 		8162CFFB24F33710002894DB /* ListImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFFA24F33710002894DB /* ListImporter.swift */; };
 		8162CFFD24F390F6002894DB /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8162CFFC24F390F6002894DB /* CacheManager.swift */; };
+		8162CFFF24F3A9DD002894DB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8162CFFE24F3A9DD002894DB /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		8162CFF824F32388002894DB /* DenyListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyListManager.swift; sourceTree = "<group>"; };
 		8162CFFA24F33710002894DB /* ListImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListImporter.swift; sourceTree = "<group>"; };
 		8162CFFC24F390F6002894DB /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		8162CFFE24F3A9DD002894DB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		6A29FCF820E6EB0F004885EC = {
 			isa = PBXGroup;
 			children = (
+				8162CFFE24F3A9DD002894DB /* README.md */,
 				6A29FD0320E6EB0F004885EC /* CodingExercise */,
 				6A29FD1820E6EB10004885EC /* CodingExerciseTests */,
 				6A29FD0220E6EB0F004885EC /* Products */,
@@ -333,6 +336,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8162CFFF24F3A9DD002894DB /* README.md in Resources */,
 				6AC4866E21F2AB700068D741 /* LaunchScreen.storyboard in Resources */,
 				8108260F24F1EE49000AFAA4 /* denylist.txt in Resources */,
 				6AE88E36222759D90032677C /* Lato-Regular.ttf in Resources */,

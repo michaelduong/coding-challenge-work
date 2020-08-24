@@ -9,18 +9,18 @@
 import Foundation
 
 final class ValidatorNode<T: Hashable> {
-  var value: T?
-  weak var parent: ValidatorNode?
-  var children: [T: ValidatorNode] = [:]
-  var isTerminating = false
-  
-  init(value: T? = nil, parent: ValidatorNode? = nil) {
-    self.value = value
-    self.parent = parent
-  }
-  
-  func add(child: T) {
-    guard children[child] == nil else { return }
-    children[child] = ValidatorNode(value: child, parent: self)
-  }
+    var value: T?
+    weak var parent: ValidatorNode?
+    var children: [T: ValidatorNode] = [:]
+    var isTerminating = false
+    
+    init(value: T? = nil, parent: ValidatorNode? = nil) {
+        self.value = value
+        self.parent = parent
+    }
+    
+    func add(child: T) {
+        guard children[child] == nil else { return }
+        children[child] = ValidatorNode(value: child, parent: self)
+    }
 }

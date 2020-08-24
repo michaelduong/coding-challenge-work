@@ -22,14 +22,14 @@ final class AutocompleteTableViewCell: UITableViewCell {
     }()
     
     let nameLabel = UILabel(font: .name,
-                                    textColor: .nameColor,
-                                    textAlignment: .left,
-                                    numberOfLines: 1)
+                            textColor: .nameColor,
+                            textAlignment: .left,
+                            numberOfLines: 1)
     
     let usernameLabel = UILabel(font: .username,
-                                        textColor: .usernameColor,
-                                        textAlignment: .left,
-                                        numberOfLines: 1)
+                                textColor: .usernameColor,
+                                textAlignment: .left,
+                                numberOfLines: 1)
     
     var userDetails: (String, String, URL)! {
         didSet {

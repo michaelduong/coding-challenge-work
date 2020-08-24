@@ -44,10 +44,10 @@ final class AutocompleteView: UIView {
     let statusImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: Constants.Images.emptyState)
+        iv.image = .emptyStateImage
         return iv
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -73,7 +73,7 @@ final class AutocompleteView: UIView {
             .leading(.leadingSpacing)
             .trailing(.trailingSpacing)
             .top(.textFieldTopPadding)
-            .height(40)
+            .height(.searchTextFieldHeight)
         
         statusLabel
             .leading(.statusLabelSidePadding)

@@ -25,17 +25,17 @@ protocol AutocompleteViewModelInterface {
      * Fetches users from that match a given a search term
      */
     func fetchUserNamesAndNames(_ searchTerm: String?, completionHandler: @escaping ([UserSearchResult]) -> Void)
-
+    
     /*
      * Updates usernames according to given update string.
      */
     func updateSearchText(text: String?)
-
+    
     /*
-    * Returns a username at the given position.
-    */
+     * Returns a username at the given position.
+     */
     func username(at index: Int) -> String
-
+    
     /*
      * Returns the count of the current usernames array.
      */
@@ -50,7 +50,7 @@ protocol AutocompleteViewModelInterface {
      * Returns the user avatar image URL at the given position.
      */
     func userAvatarUrl(at index: Int) -> URL
-
+    
     /*
      * Returns whether text is valid or found within the denylist
      */
@@ -58,7 +58,7 @@ protocol AutocompleteViewModelInterface {
     
     /*
      Delegate that allows to send data updates through callback.
- */
+     */
     var delegate: AutocompleteViewModelDelegate? { get set }
 }
 
@@ -67,12 +67,12 @@ final class AutocompleteViewModel: AutocompleteViewModelInterface {
     private var users: [UserSearchResult] = []
     public weak var delegate: AutocompleteViewModelDelegate?
     private let cacheManager: CacheManagarInterface
-
+    
     init(dataProvider: UserSearchResultDataProviderInterface, cacheManager: CacheManagarInterface) {
         self.resultsDataProvider = dataProvider
         self.cacheManager = cacheManager
     }
-
+    
     func updateSearchText(text: String?) {
         if validateText(text ?? "") {
             if let cachedUsers = cacheManager.retrieveCache(key: text!) {
@@ -110,11 +110,11 @@ final class AutocompleteViewModel: AutocompleteViewModelInterface {
         
         return true
     }
-
+    
     func usersCount() -> Int {
         return users.count
     }
-
+    
     func username(at index: Int) -> String {
         return users[index].username
     }
@@ -126,13 +126,13 @@ final class AutocompleteViewModel: AutocompleteViewModelInterface {
     func userAvatarUrl(at index: Int) -> URL {
         return URL(string: users[index].avatarUrl)!
     }
-
+    
     func fetchUserNamesAndNames(_ searchTerm: String?, completionHandler: @escaping ([UserSearchResult]) -> Void) {
         guard let term = searchTerm, !term.isEmpty else {
             completionHandler([])
             return
         }
-
+        
         self.resultsDataProvider.fetchUsers(term) { users in
             completionHandler(users.compactMap { $0 })
         }

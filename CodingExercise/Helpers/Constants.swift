@@ -17,6 +17,7 @@ struct Constants {
         static let emptyStateText = NSLocalizedString("Start typing a username to get results here.", comment: "")
         static let noResultsText = NSLocalizedString("No results found.", comment: "")
         static let warningStateText = NSLocalizedString("Search term found in deny list.", comment: "")
+        static let denyList = "denylist"
     }
     
     struct Images {

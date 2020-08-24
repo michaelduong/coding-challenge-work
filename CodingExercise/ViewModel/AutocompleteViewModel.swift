@@ -89,7 +89,7 @@ class AutocompleteViewModel: AutocompleteViewModelInterface {
             return false
         }
         
-        if Validator.shared.contains(text) || Validator.shared.startsWith(String(text.prefix(2))) {
+        if Validator.shared.contains(text) || Validator.shared.startsWith(text) {
             self.delegate?.updateStatusUI(with: .warning)
             return false
         }

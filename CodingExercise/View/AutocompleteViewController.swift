@@ -50,7 +50,7 @@ final class AutocompleteViewController: UIViewController {
 // MARK: - TextField Delegate Methods
 extension AutocompleteViewController: UITextFieldDelegate {
     @objc func textFieldDidChange(textField: UITextField) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             self.viewModel.updateSearchText(text: self.autoCompleteView.searchTextField.text)
         }
     }

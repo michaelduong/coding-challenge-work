@@ -28,7 +28,7 @@ class ListManager: ListManagerInterface {
     
     func retrieveList() {
         // Load list of search terms from device/local storage if exists
-        if let listOfWords = defaults.object(forKey: Constants.UserDefaultKeys.savedTermsList) as? [String] {
+        if let listOfWords = defaults.stringArray(forKey: Constants.UserDefaultKeys.savedTermsList) {
             searchTerms = listOfWords
         } else { // Otherwise we have to load it from the bundle
             let words = importer.importList()
@@ -56,8 +56,14 @@ class ListManager: ListManagerInterface {
     }
     
     func initializeTrieValidator() {
+        var maxSearchTermCount = defaults.integer(forKey: Constants.UserDefaultKeys.maxSearchTermCount)
+        
         for term in searchTerms {
+            let count = term.count
+            maxSearchTermCount = max(maxSearchTermCount, count)
             Validator.shared.insert(term)
         }
+        
+        defaults.set(maxSearchTermCount, forKey: Constants.UserDefaultKeys.maxSearchTermCount)
     }
 }
